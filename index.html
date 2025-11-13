@@ -9,7 +9,7 @@
     <h3>Физика</h3>
     <button onclick="generateExercise()">Новый пример</button>
     <div id="exercise"></div>
-    <input id="answerInput" placeholder="Введите ответ">
+    <input type="test" id="answerInput" placeholder="Введите ответ">
     <button onclick="checkAnswerInput()">Проверить</button>
   </body>
   <script>
@@ -18,15 +18,14 @@
       ["4+2", "6"],
       ["7+3", "10"]
     ];
-    let rightAnswer = "none";
     function generateExercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
       document.getElementById('exercise').textContent = exercises[randomIndex][0];
-      const rightAnswer = exercises[randomIndex][1];
+      let rightAnswer = exercises[randomIndex][1];
       console.log(rightAnswer);
     }
     function checkAnswerInput() {
-      const answer = document.getElementById('answerInput');
+      const answer = document.getElementById('answerInput').value;
       console.log(answer);
       console.log(rightAnswer);
       if (answer === rightAnswer) {

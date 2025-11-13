@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="eng">
   <head>
@@ -6,33 +7,39 @@
   </head>
   <body>
     <h1>Scholarship Practicum</h1>
-    <h3>Физика</h3>
-    <button onclick="generateExercise()">Новый пример</button>
+    <button onclick="generateExercise()" style="margin-bottom: 12px">Новый пример</button>
     <div id="exercise"></div>
-    <input type="test" id="answerInput" placeholder="Введите ответ">
-    <button onclick="checkAnswerInput()">Проверить</button>
+    <input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
+    <button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Проверить</button>
+    <div id="checkedAnswer"></div>
   </body>
   <script>
     const exercises = [
-      ["1+2", "3"],
-      ["4+2", "6"],
-      ["7+3", "10"]
+      ["t<sub>1</sub> = 4с<br>x<sub>1</sub> = 5м<br>x<sub>2</sub> = -3м<br>v - ?<br>v<sub>x</sub> - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "2, -2"],
+      ["l<sub>0</sub> = 20км<br>v<sub>1</sub> = 50км/ч<br>v<sub>2</sub> = 60км/ч<br>t = 0.5<br>S<sub>1</sub> - ?<br>S<sub>2</sub> - ?<br>l - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "25, 30, 35"],
+      ["v = 36км/час<br>v<sub>теч</sub> = 4км/ч<br>S = 90км<br>t - ? (время на переплыть туда и обратно)<br>вводить ответ округлённый до единиц, не использующий единицу измерения", "5"]
     ];
     let rightAnswer = "test";
     function generateExercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
-      document.getElementById('exercise').textContent = exercises[randomIndex][0];
+      document.getElementById('exercise').innerHTML = exercises[randomIndex][0];
       rightAnswer = exercises[randomIndex][1];
       console.log(rightAnswer);
+      document.getElementById("answerInput").style = "display: inline";
+      document.getElementById("checkAnswerInputButton").style = "display: inline";
     }
     function checkAnswerInput() {
       const answer = document.getElementById('answerInput').value;
       console.log(answer);
       console.log(rightAnswer);
       if (answer === rightAnswer) {
-        document.getElementById('exercise').textContent = 'gg'
+        document.getElementById('checkedAnswer').innerHTML = 'Поздравляем, вы верны как невсегда!';
+        document.getElementById('exercise').innerHTML = '';
       } else {
-        document.getElementById('exercise').textContent = 'neverno'
+        document.getElementById('checkedAnswer').innerHTML = 'Неверно!';
+        setTimeout(() => {
+      	document.getElementById('checkedAnswer').innerHTML = '';
+        }, 2000);
       }
     }
   </script>

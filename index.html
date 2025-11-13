@@ -21,9 +21,11 @@
       const randomIndex = Math.floor(Math.random() * exercises.length);
       document.getElementById('exercise').textContent = exercises[randomIndex][0];
       const rightAnswer = exercises[randomIndex][1];
+      console.log(rightAnswer)
     }
     function checkAnswerInput() {
       answer = document.getElementById('asnwerInput');
+      console.log(asnwer, rightAnswer)
       if (answer === rightAnswer) {
         document.getElementById('exercise').textContent = 'gg'
       } else {

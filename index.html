@@ -18,10 +18,11 @@
       ["4+2", "6"],
       ["7+3", "10"]
     ];
+    let rightAnswer = "test";
     function generateExercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
       document.getElementById('exercise').textContent = exercises[randomIndex][0];
-      let rightAnswer = exercises[randomIndex][1];
+      rightAnswer = exercises[randomIndex][1];
       console.log(rightAnswer);
     }
     function checkAnswerInput() {

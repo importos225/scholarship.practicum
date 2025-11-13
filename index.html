@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8">
+    <title>Scholarship Practicum</title>
+  </head>
+  <body>
+    <div id="exercise"></div>
+  </body>
+  <script>
+    const exercises = [
+      "ntcn1",
+      "тест2",
+      "225"
+    ];
+    function getRandomText() {
+      const randomIndex - Math.floor(Math.random() * exercises.length);
+      return exercises[randomIndex]
+    }
+    document.getElementById('exercise').textContent = getRandomText();
+  </script>
+</html>

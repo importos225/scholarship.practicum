@@ -5,19 +5,29 @@
     <title>Scholarship Practicum</title>
   </head>
   <body>
-    <h1>будет ли текст???</h1>
+    <button onclick="generate-exercise()">Новый пример</button>
     <div id="exercise"></div>
+    <input id="answer-input" placeholder="Введите ответ">
+    <button onclick="check-answer-input()">Проверить</button>
   </body>
   <script>
     const exercises = [
-      "ntcn1",
-      "тест2",
-      "225"
+      ["ntcn1", "1"],
+      ["тест2", "2"],
+      ["225", "3"]
     ];
-    function getRandomText() {
+    function generate-exercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
-      return exercises[randomIndex];
+      document.getElementById('exercise').textContent = exercises[randomIndex][0];
+      const rightAnswer = exercises[randomIndex][1];
     }
-    document.getElementById('exercise').textContent = getRandomText();
+    function check-answer-input() {
+      answer = document.getElementById('asnwer-input');
+      if (answer === rightAnswer) {
+        document.getElementById('exercise').textContent = 'gg'
+      } else {
+        document.getElementById('exercise').textContent = 'neverno'
+      }
+    }
   </script>
 </html>

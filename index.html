@@ -6,6 +6,7 @@
   </head>
   <body>
     <h1>Scholarship Practicum</h1>
+    <h3>Физика</h3>
     <button onclick="generateExercise()">Новый пример</button>
     <div id="exercise"></div>
     <input id="answerInput" placeholder="Введите ответ">
@@ -25,7 +26,7 @@
       console.log(rightAnswer);
     }
     function checkAnswerInput() {
-      answer = document.getElementById('asnwerInput');
+      const answer = document.getElementById('asnwerInput');
       console.log(asnwer, rightAnswer);
       if (answer === rightAnswer) {
         document.getElementById('exercise').textContent = 'gg'

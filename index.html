@@ -14,9 +14,9 @@
   </body>
   <script>
     const exercises = [
-      ["1+1", "2"],
-      ["2+2", "4"],
-      ["3+3", "6"]
+      ["1+2", "3"],
+      ["4+2", "6"],
+      ["7+3", "10"]
     ];
     let rightAnswer = "none";
     function generateExercise() {
@@ -26,8 +26,9 @@
       console.log(rightAnswer);
     }
     function checkAnswerInput() {
-      const answer = document.getElementById('asnwerInput');
-      console.log(answer, rightAnswer);
+      const answer = document.getElementById('answerInput');
+      console.log(answer);
+      console.log(rightAnswer);
       if (answer === rightAnswer) {
         document.getElementById('exercise').textContent = 'gg'
       } else {

@@ -5,10 +5,10 @@
     <title>Scholarship Practicum</title>
   </head>
   <body>
-    <button onclick="generate-exercise()">Новый пример</button>
+    <button onclick="generateExercise()">Новый пример</button>
     <div id="exercise"></div>
-    <input id="answer-input" placeholder="Введите ответ">
-    <button onclick="check-answer-input()">Проверить</button>
+    <input id="answerInput" placeholder="Введите ответ">
+    <button onclick="checkAnswerInput()">Проверить</button>
   </body>
   <script>
     const exercises = [
@@ -16,13 +16,13 @@
       ["тест2", "2"],
       ["225", "3"]
     ];
-    function generate-exercise() {
+    function generateExercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
       document.getElementById('exercise').textContent = exercises[randomIndex][0];
       const rightAnswer = exercises[randomIndex][1];
     }
-    function check-answer-input() {
-      answer = document.getElementById('asnwer-input');
+    function checkAnswerInput() {
+      answer = document.getElementById('asnwerInput');
       if (answer === rightAnswer) {
         document.getElementById('exercise').textContent = 'gg'
       } else {

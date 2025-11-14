@@ -1,9 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="eng">
   <head>
     <meta charset="UTF-8">
     <title>Scholarship Practicum</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$']],  // Используем только доллары для простоты
+          displayMath: [['$$', '$$']]
+        },
+        startup: {
+          pageReady: function() {
+            console.log('MathJax loaded!');
+            return MathJax.startup.defaultPageReady();
+          }
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   </head>
   <body>
     <h1>Scholarship Practicum</h1>
@@ -14,15 +28,24 @@
     <div id="checkedAnswer"></div>
   </body>
   <script>
+    function updateElementHTML(elementId, newContent) {
+      const element = document.getElementById(elementId);
+      element.innerHTML = newContent;
+      if (window.MathJax) {
+        MathJax.typesetPromise([element]).catch(function(err) {
+          console.error('MathJax typeset error:', err);
+        });
+      }
+    }
     const exercises = [
-      ["t<sub>1</sub> = 4с<br>x<sub>1</sub> = 5м<br>x<sub>2</sub> = -3м<br>v - ?<br><mo>&#0x1D708;</mo><sub>x</sub> - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "2, -2"],
-      ["l<sub>0</sub> = 20км<br><mo>&#0x1D708;</mo><sub>1</sub> = 50км/ч<br><mo>&#0x1D708;</mo><sub>2</sub> = 60км/ч<br>t = 0.5<br>S<sub>1</sub> - ?<br>S<sub>2</sub> - ?<br>l - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "25, 30, 35"],
-      ["<mo>&#0x1D708;</mo> = 36км/час<br><mo>&#0x1D708;</mo><sub>теч</sub> = 4км/ч<br>S = 90км<br>t - ? (время на переплыть туда и обратно)<br>вводить ответ округлённый до единиц, не использующий единицу измерения", "5"]
+      ["$t$<sub>1</sub> = 4с<br>$x$<sub>1</sub> = 5м<br>$x$<sub>2</sub> = -3м<br>$v$ - ?<br>$v$<sub>x</sub> - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "2, -2"],
+      ["$l$<sub>0</sub> = 20км<br>$v$<sub>1</sub> = 50км/ч<br>$v$<sub>2</sub> = 60км/ч<br>$t$ = 0.5<br>$S$<sub>1</sub> - ?<br>$S$<sub>2</sub> - ?<br>$l$ - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "25, 30, 35"],
+      ["$v$ = 36км/час<br>$v$<sub>теч</sub> = 4км/ч<br>$S$ = 90км<br>$t$ - ? (время на переплыть туда и обратно)<br>вводить ответ округлённый до единиц, не использующий единицу измерения", "5"]
     ];
     let rightAnswer = "test";
     function generateExercise() {
       const randomIndex = Math.floor(Math.random() * exercises.length);
-      document.getElementById('exercise').innerHTML = exercises[randomIndex][0];
+      updateElementHTML('exercise', exercises[randomIndex][0]);
       rightAnswer = exercises[randomIndex][1];
       console.log(rightAnswer);
       document.getElementById("answerInput").style = "display: inline";
@@ -33,12 +56,12 @@
       console.log(answer);
       console.log(rightAnswer);
       if (answer === rightAnswer) {
-        document.getElementById('checkedAnswer').innerHTML = 'Поздравляем, вы верны как невсегда!';
-        document.getElementById('exercise').innerHTML = '';
+        updateElementHTML('checkedAnswer', 'Поздравляем, вы верны как невсегда!');
+        updateElementHTML('exercise', '');
       } else {
-        document.getElementById('checkedAnswer').innerHTML = 'Неверно!';
+        updateElementHTML('checkedAnswer', 'Неверно! ');
         setTimeout(() => {
-      	document.getElementById('checkedAnswer').innerHTML = '';
+            updateElementHTML('checkedAnswer', '');
         }, 2000);
       }
     }

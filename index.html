@@ -25,6 +25,7 @@
 		<div id="exercise"></div>
 		<input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
 		<button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
+		<div id="rightAnswer"></div>
 		<div id="checkedAnswer"></div>
 	</body>
 	<script>
@@ -56,7 +57,7 @@
 		function checkAnswerInput() {
 			const answer = document.getElementById('answerInput').value;
 			console.log(answer);
-			console.log(rightAnswer);
+			updateElementHTML('rightAnswer', rightAnswer);
 			if (answer === rightAnswer) {
 				updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
 			}

@@ -37,16 +37,15 @@
         });
       }
     }
-    const exercises = [
-      ["$t$<sub>1</sub> = 4с<br>$x$<sub>1</sub> = 5м<br>$x$<sub>2</sub> = -3м<br>$v$ - ?<br>$v$<sub>x</sub> - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "2, -2"],
-      ["$l$<sub>0</sub> = 20км<br>$v$<sub>1</sub> = 50км/ч<br>$v$<sub>2</sub> = 60км/ч<br>$t$ = 0.5<br>$S$<sub>1</sub> - ?<br>$S$<sub>2</sub> - ?<br>$l$ - ?<br>ответ вводить через запятую с пробелом, без единиц измерения", "25, 30, 35"],
-      ["$v$ = 36км/час<br>$v$<sub>теч</sub> = 4км/ч<br>$S$ = 90км<br>$t$ - ? (время на переплыть туда и обратно)<br>ответ вводить не используя единицу измерения", "18225"]
+    const questions_physics = [
+      ["Совокупность тела отсчёта, связанной сним системы координат и часов называют", "Системой отсчёта"]
     ];
     let rightAnswer = "test";
     function generateExercise() {
-      const randomIndex = Math.floor(Math.random() * exercises.length);
-      updateElementHTML('exercise', exercises[randomIndex][0]);
-      rightAnswer = exercises[randomIndex][1];
+			updateElementHTML('checkedAnswer', '');
+      const randomIndex = Math.floor(Math.random() * questions_physics.length);
+      updateElementHTML('exercise', questions_physics[randomIndex][0]);
+      rightAnswer = questions_physics[randomIndex][1];
       console.log(rightAnswer);
       document.getElementById("answerInput").style = "display: inline";
       document.getElementById("checkAnswerInputButton").style = "display: inline";
@@ -56,13 +55,10 @@
       console.log(answer);
       console.log(rightAnswer);
       if (answer === rightAnswer) {
-        updateElementHTML('checkedAnswer', 'Поздравляем, вы верны как невсегда!');
+        updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
         updateElementHTML('exercise', '');
       } else {
-        updateElementHTML('checkedAnswer', 'Неверно! ');
-        setTimeout(() => {
-            updateElementHTML('checkedAnswer', '');
-        }, 2000);
+        updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
       }
     }
   </script>

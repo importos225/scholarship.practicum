@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="eng">
-  <head>
-    <meta charset="UTF-8">
-    <title>Scholarship Practicum</title>
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$']],  // Используем только доллары для простоты
-          displayMath: [['$$', '$$']]
-        },
-        startup: {
-          pageReady: function() {
-            console.log('MathJax loaded!');
-            return MathJax.startup.defaultPageReady();
-          }
-        }
-      };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  </head>
-  <body>
-    <h1>Scholarship Practicum</h1>
-    <button onclick="generateExercise()" style="margin-bottom: 12px">Новый пример</button>
-    <div id="exercise"></div>
-    <input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
-    <button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
-    <div id="checkedAnswer"></div>
-  </body>
-  <script>
-    function updateElementHTML(elementId, newContent) {
-      const element = document.getElementById(elementId);
-      element.innerHTML = newContent;
-      if (window.MathJax) {
-        MathJax.typesetPromise([element]).catch(function(err) {
-          console.error('MathJax typeset error:', err);
-        });
-      }
-    }
-    const questions_physics = [
-      ["Совокупность тела отсчёта, связанной сним системы координат и часов называют:", "системой отсчёта"]
-    ];
-    let rightAnswer = "test";
-    function generateExercise() {
+	<head>
+		<meta charset="UTF-8">
+		<title>Scholarship Practicum</title>
+		<script>
+			window.MathJax = {
+				tex: {
+					inlineMath: [['$', '$']],	// Используем только доллары для простоты
+					displayMath: [['$$', '$$']]
+				},
+				startup: {
+					pageReady: function() {
+						console.log('MathJax loaded!');
+						return MathJax.startup.defaultPageReady();
+					}
+				}
+			};
+		</script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	</head>
+	<body>
+		<h1>Scholarship Practicum</h1>
+		<button onclick="generateExercise()" style="margin-bottom: 12px">Новый пример</button>
+		<div id="exercise"></div>
+		<input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
+		<button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
+		<div id="checkedAnswer"></div>
+	</body>
+	<script>
+		function updateElementHTML(elementId, newContent) {
+			const element = document.getElementById(elementId);
+			element.innerHTML = newContent;
+			if (window.MathJax) {
+				MathJax.typesetPromise([element]).catch(function(err) {
+					console.error('MathJax typeset error:', err);
+				});
+			}
+		}
+		const questions_physics = [
+			["Совокупность тела отсчёта, связанной сним системы координат и часов называют:", "системой отсчёта"],
+			["Что называют радиус вектором в физике?", "вектор, который соединяет начальную точку и данную точку перемещения.']
+		];
+		let rightAnswer = "test";
+		function generateExercise() {
 			updateElementHTML('checkedAnswer', '');
-      const randomIndex = Math.floor(Math.random() * questions_physics.length);
-      updateElementHTML('exercise', questions_physics[randomIndex][0]);
-      rightAnswer = questions_physics[randomIndex][1];
-      console.log(rightAnswer);
-      document.getElementById("answerInput").style = "display: inline";
-      document.getElementById("checkAnswerInputButton").style = "display: inline";
-    }
-    function checkAnswerInput() {
-      const answer = document.getElementById('answerInput').value;
-      console.log(answer);
-      console.log(rightAnswer);
-      if (answer === rightAnswer) {
-        updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
-      }
-	  // else {
-   	    //updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
-      // }
-    }
-  </script>
+			const randomIndex = Math.floor(Math.random() * questions_physics.length);
+			updateElementHTML('exercise', questions_physics[randomIndex][0]);
+			rightAnswer = questions_physics[randomIndex][1];
+			console.log(rightAnswer);
+			document.getElementById("answerInput").style = "display: inline";
+			document.getElementById("checkAnswerInputButton").style = "display: inline";
+		}
+		function checkAnswerInput() {
+			const answer = document.getElementById('answerInput').value;
+			console.log(answer);
+			console.log(rightAnswer);
+			if (answer === rightAnswer) {
+				updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
+			}
+		// else {
+	 			//updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
+			// }
+		}
+	</script>
 </html>

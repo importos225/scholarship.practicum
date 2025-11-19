@@ -24,7 +24,7 @@
     <button onclick="generateExercise()" style="margin-bottom: 12px">Новый пример</button>
     <div id="exercise"></div>
     <input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
-    <button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Проверить</button>
+    <button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
     <div id="checkedAnswer"></div>
   </body>
   <script>
@@ -38,7 +38,7 @@
       }
     }
     const questions_physics = [
-      ["Совокупность тела отсчёта, связанной сним системы координат и часов называют", "Системой отсчёта"]
+      ["Совокупность тела отсчёта, связанной сним системы координат и часов называют:", "системой отсчёта"]
     ];
     let rightAnswer = "test";
     function generateExercise() {
@@ -56,10 +56,10 @@
       console.log(rightAnswer);
       if (answer === rightAnswer) {
         updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
-        updateElementHTML('exercise', '');
-      } else {
-        updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
       }
+	  // else {
+   	    //updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
+      // }
     }
   </script>
 </html>

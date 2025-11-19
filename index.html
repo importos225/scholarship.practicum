@@ -6,7 +6,7 @@
 		<script>
 			window.MathJax = {
 				tex: {
-					inlineMath: [['$', '$']],	// Используем только доллары для простоты
+					inlineMath: [['$', '$']],
 					displayMath: [['$$', '$$']]
 				},
 				startup: {
@@ -26,6 +26,7 @@
 		<input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
 		<button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
 		<div id="checkedAnswer"></div>
+		<a href="https://gamebanana.com/mods/565924"><img src="https://gamebanana.com/mods/embeddables/565924?type=large"/></a>
 	</body>
 	<script>
 		function updateElementHTML(elementId, newContent) {
@@ -39,7 +40,8 @@
 		}
 		const questions_physics = [
 			["Совокупность тела отсчёта, связанной сним системы координат и часов называют:", "системой отсчёта"],
-			["Что называют радиус вектором в физике?", "вектор, который соединяет начальную точку и данную точку перемещения."]
+			["Что называют радиус вектором в физике?", "вектор, который соединяет начальную точку и данную точку перемещения."],
+			["", ""]
 		];
 		let rightAnswer = "test";
 		function generateExercise() {

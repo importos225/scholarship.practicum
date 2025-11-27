@@ -21,11 +21,15 @@
 	</head>
 	<body>
 		<h1>Scholarship Practicum</h1>
+		<select name="options" id="disciplineSelect">
+			<option value="Physics">Physics</option>
+			<option value="Socialist">Socialstudies</option>
+		</select> 			
 		<button onclick="generateExercise()" style="margin-bottom: 12px">Новый пример</button>
 		<div id="exercise"></div>
 		<input type="test" id="answerInput" style="display: none;" placeholder="Введите ответ">
 		<button id="checkAnswerInputButton" onclick="checkAnswerInput()" style="display: none;">Свериться</button>
-		<div id="rightAnswer"></div>
+		<div id="rightAnswer" style="color: green;"></div>
 		<div id="checkedAnswer"></div>
 	</body>
 	<script>
@@ -44,12 +48,32 @@
 			["Чему равна проекция вектора на перпендикулярную к нему ось?", "нулю"],
 			["в каком случае модуль перемещения точки за какое-то время равен пути пройденному ею за то же время?", "при прямолинейном однонаправленном движении"]
 		];
+		const quizz_socialist = [
+			["Что обозначает внутреннюю, духовную жизнь человека:<br>1. Мир<br>2. Личность<br>3. Жизненный путь<br><br>Формат ответа: одна цифра", "2"],
+			["Высший уровень развития и саморегуляции зрелой личности - это:<br>1. ценности<br>2. духовность<br>3. ориентиры<br><br>Формат ответа: одна цифра", "2"],
+			["Родина, язык, возраст, положение в обществе -<br>1. объединяют людей<br>2. разъединяют людей<br>3. и объединяют, и разъединяют<br><br>Формат ответа: одна цифра", "3"],
+			["Автор категорического императива морали:<br>1. И. Кант<br>2. Р. Декарт<br>3. К. Каутский<br><br>Формат ответа: одна цифра", "1"],
+			["Что входит в понятие духовных ориентиров личности:<br>1. мораль<br>2. ценности<br>3. идеалы<br>4. разум<br>5. воля<br><br>Формат ответа: несколько цифр в порядке", "123"],
+			["К какому виду духовных ориентиров личности относятся патриотизм и гражданственность:<br>1. моральных<br>2. идеальных<br>3. ценностных<br><br>Формат ответа: одна цифра", "3"],
+			["Мораль, ценности, идеалы входят в понятие:<br>1. духовные ориентиры личности<br>2. политические тенденции<br>3. эстетические представления<br><br>Формат ответа: одна цифра", "1"],
+			["Обыденное, научное, религиозное - это типы:<br>1. духовных ориентиров личности<br>2. мировоззрения<br>3. знаний<br><br>Формат ответа: одна цифра", "2"],
+			["Какой тип мировоззрения иначе называют житейским:<br>1. религиозное<br>2. научное<br>3. обыденное<br><br>Формат ответа: одна цифра", "3"],
+			["Высший уровень развития личности как творца своей жизни, направляющего свою активность на удовлетворение духовных потребностей - это:<br>1. патриотизм<br>2. гражданственность<br>3. духовность<br><br>Формат ответа: одна цифра", "3"]
+		]
 		let rightAnswer = "test";
 		function generateExercise() {
+			var disciplineSelect = document.getElementById("disciplineSelect").value;
+			if (disciplineSelect === "Physics") {
+				discipline = questions_physics;
+			} else {
+				discipline = quizz_socialist;
+			}
+			updateElementHTML('rightAnswer', '');
 			updateElementHTML('checkedAnswer', '');
-			const randomIndex = Math.floor(Math.random() * questions_physics.length);
-			updateElementHTML('exercise', questions_physics[randomIndex][0]);
-			rightAnswer = questions_physics[randomIndex][1];
+			const answer = document.getElementById('answerInput').value = '';
+			const randomIndex = Math.floor(Math.random() * discipline.length);
+			updateElementHTML('exercise', discipline[randomIndex][0]);
+			rightAnswer = discipline[randomIndex][1];
 			console.log(rightAnswer);
 			document.getElementById("answerInput").style = "display: inline";
 			document.getElementById("checkAnswerInputButton").style = "display: inline";
@@ -57,13 +81,12 @@
 		function checkAnswerInput() {
 			const answer = document.getElementById('answerInput').value;
 			console.log(answer);
-			updateElementHTML('rightAnswer', rightAnswer);
+			updateElementHTML('rightAnswer', `Правильный ответ: ${rightAnswer}`);
 			if (answer === rightAnswer) {
-				updateElementHTML('checkedAnswer', 'Да вы маг! Написали в точности как по образцу!');
+				updateElementHTML('checkedAnswer', 'И Вы абсолютно правы!!!.');
+			} else {
+	 			updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом, чтобы в следующий раз правильно ответить, пон??');
 			}
-		// else {
-	 			//updateElementHTML('checkedAnswer', 'Сверяйтесь с образцом');
-			// }
 		}
 	</script>
 </html>
